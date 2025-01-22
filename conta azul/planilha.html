@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Importar e Editar Planilhas</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+    <link rel="icon" href="EHM2.jpg" type="image/x-icon">
+    <style>
+        /* Reset CSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+    
+        /* Estilo geral da página */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #2A2A2A; /* Fundo cinza escuro */
+            color: #D0D0D0; /* Texto claro */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 30px;
+            font-size: 16px;
+        }
+
+         /* Estilo do logo */
+         #logo {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            width: 50px; /* Ajuste o tamanho conforme necessário */
+            height: auto;
+            z-index: 100;
+        }
+    
+        h2 {
+            font-size: 32px;
+            color: #007BFF; /* Azul industrial */
+            margin-bottom: 20px;
+            text-align: center;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+    
+        h3 {
+            font-size: 20px;
+            color: #A0A0A0; /* Cinza claro */
+            margin-bottom: 30px;
+            text-align: center;
+        }
+    
+        /* Animação para a tabela */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Adicionando a animação de fade-in à tabela */
+        #tabela-conteudo {
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        /* Animação de aparecimento dos botões */
+        @keyframes fadeInButton {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Aplica a animação aos botões */
+        button {
+            animation: fadeInButton 0.5s ease-out;
+        }
+
+        /* Animação de crescimento nas células da tabela ao passar o mouse */
+        td:hover {
+            transform: scale(1.05);
+            transition: transform 0.3s ease;
+        }
+
+        /* Animação para a linha selecionada */
+        @keyframes highlightRow {
+            0% {
+                background-color: #007BFF;
+            }
+            100% {
+                background-color: #0056b3;
+            }
+        }
+
+        /* Linha selecionada com animação */
+        tr.selected {
+            animation: highlightRow 0.3s ease;
+        }
+
+        /* Animação de "voltar" */
+        @keyframes bounceBack {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Animação para o botão voltar */
+        #voltar-btn:hover {
+            animation: bounceBack 0.6s ease-in-out;
+        }
+    
+        /* Estilo do formulário de upload */
+        input[type="file"] {
+            font-size: 16px;
+            padding: 12px 20px;
+            border: 2px solid #333; /* Borda cinza escuro */
+            border-radius: 8px;
+            margin-bottom: 20px;
+            background-color: #444; /* Cinza metálico */
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s, border-color 0.3s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+    
+        input[type="file"]:hover {
+            background-color: #555;
+            border-color: #007BFF; /* Azul nos hover */
+        }
+    
+        /* Estilo da tabela */
+        table {
+            width: 100%;
+            max-width: 900px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            overflow: hidden;
+            border-collapse: collapse;
+            background-color: #333; /* Fundo da tabela */
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+    
+        th, td {
+            padding: 12px 15px;
+            text-align: center;
+            border: 1px solid #444; /* Borda mais suave */
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+    
+        th {
+            background-color: #444; /* Azul metálico escuro */
+            color: #fff;
+            font-weight: bold;
+        }
+    
+        td {
+            background-color: #222; /* Escuro para contraste */
+            color: #ccc;
+        }
+    
+        td[contenteditable="true"]:focus {
+            background-color: #555;
+            border: 1px solid #007BFF; /* Azul nas células editáveis */
+            outline: none;
+        }
+    
+        /* Estilo dos botões */
+        button {
+            background-color: #007BFF; /* Azul industrial */
+            color: #fff;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            margin: 10px;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+        }
+    
+        button:hover {
+            background-color: #0056b3; /* Azul mais escuro */
+            transform: translateY(-2px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.4);
+        }
+    
+        button:active {
+            transform: translateY(0);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+    
+        button:disabled {
+            background-color: #444; /* Cinza para botão desabilitado */
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+    
+        /* Estilo do contêiner de botões */
+        .button-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+    
+        /* Estilo do botão "Voltar" */
+        #voltar-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #444; /* Fundo escuro para o botão */
+            color: #fff;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background-color 0.3s, transform 0.3s;
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+            z-index: 100;
+        }
+    
+        #voltar-btn:hover {
+            background-color: #555;
+            transform: translateY(-2px);
+        }
+    
+        #voltar-btn:active {
+            transform: translateY(0);
+        }
+    
+        /* Efeitos para seleção de linha */
+        tr.selected {
+            background-color: #007BFF !important; /* Azul na linha selecionada */
+        }
+    
+        /* Responsividade para dispositivos móveis */
+        @media (max-width: 768px) {
+            h2 {
+                font-size: 26px;
+            }
+    
+            input[type="file"], button {
+                width: 100%;
+                padding: 15px;
+            }
+    
+            table {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Importar e Editar Planilhas</h2>
+    
+    <img id="logo" src="EHM2.jpg" alt="Logo">
+    <!-- Formulário para upload de arquivo -->
+    <input type="file" id="input-excel" accept=".xlsx, .xls" />
+
+    <h3>Conteúdo da Planilha</h3>
+    <table id="tabela-conteudo" border="1" contenteditable="true">
+        <thead>
+            <tr></tr> <!-- Cabeçalho da tabela -->
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <!-- Botões de Ação -->
+    <div class="button-container">
+        <button id="adicionar-linha">Adicionar Linha</button>
+        <button id="excluir-linha" disabled>Excluir Linha Selecionada</button>
+        <button id="baixar-planilha">Baixar Planilha Editada</button>
+        <button id="salvar-planilha">Salvar Planilha</button>
+        <button id="carregar-planilha">Carregar Planilha Salva</button>
+        <button id="listar-planilhas">Listar Planilhas Salvas</button>
+    </div>
+
+    <!-- Botão "Voltar" -->
+    <button id="voltar-btn">Voltar</button>
+
+    <script>
+        let jsonData = []; // Variável global para armazenar os dados da planilha
+        let selectedRowIndex = -1; // Para rastrear a linha selecionada
+        let planilhasSalvas = []; // Lista de planilhas salvas no armazenamento local
+
+        // Função para ler a planilha e exibir na tabela
+        document.getElementById('input-excel').addEventListener('change', function(event) {
+            var file = event.target.files[0];
+            if (!file || !['application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'application/vnd.ms-excel'].includes(file.type)) {
+                alert("Por favor, selecione um arquivo Excel válido (.xlsx ou .xls).");
+                return;
+            }
+
+            if (file.size > 100 * 1024 * 1024) {
+                alert("O arquivo deve ter no máximo 100MB.");
+                return;
+            }
+
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                var data = e.target.result;
+                var workbook = XLSX.read(data, { type: 'binary' });
+
+                var sheet = workbook.Sheets[workbook.SheetNames[0]];
+                jsonData = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+
+                var table = document.getElementById('tabela-conteudo');
+                var tbody = table.querySelector('tbody');
+                tbody.innerHTML = '';
+
+                jsonData.forEach(function(row) {
+                    var tr = document.createElement('tr');
+                    row.forEach(function(cell) {
+                        var td = document.createElement('td');
+                        td.textContent = cell;
+                        td.contentEditable = true;
+                        tr.appendChild(td);
+                    });
+                    tbody.appendChild(tr);
+                });
+
+                var thead = table.querySelector('thead tr');
+                thead.innerHTML = '';
+                jsonData[0].forEach(function(header) {
+                    var th = document.createElement('th');
+                    th.textContent = header;
+                    thead.appendChild(th);
+                });
+            };
+
+            reader.readAsBinaryString(file);
+        });
+
+        // Função para adicionar uma nova linha na tabela
+        document.getElementById('adicionar-linha').addEventListener('click', function() {
+            var table = document.getElementById('tabela-conteudo');
+            var tbody = table.querySelector('tbody');
+            var newRow = document.createElement('tr');
+            var numColumns = jsonData[0].length;
+
+            for (var i = 0; i < numColumns; i++) {
+                var td = document.createElement('td');
+                td.contentEditable = true;
+                newRow.appendChild(td);
+            }
+
+            tbody.appendChild(newRow);
+            jsonData.push(new Array(numColumns).fill(''));
+        });
+
+        // Função para excluir a linha selecionada
+        document.getElementById('excluir-linha').addEventListener('click', function() {
+            var table = document.getElementById('tabela-conteudo');
+            if (selectedRowIndex > -1) {
+                table.deleteRow(selectedRowIndex);
+                jsonData.splice(selectedRowIndex, 1);
+                selectedRowIndex = -1;
+                document.getElementById('excluir-linha').disabled = true;
+            }
+        });
+
+        // Função para selecionar a linha da tabela
+        document.getElementById('tabela-conteudo').addEventListener('click', function(event) {
+            var row = event.target.closest('tr');
+            if (!row) return;
+    
+            if (selectedRowIndex !== -1) {
+                var prevRow = document.querySelector(`#tabela-conteudo tr:nth-child(${selectedRowIndex + 1})`);
+                prevRow.classList.remove('selected');
+            }
+    
+            selectedRowIndex = Array.from(row.parentNode.children).indexOf(row);
+            row.classList.add('selected');
+            document.getElementById('excluir-linha').disabled = false;
+        });
+
+        // Função para baixar a planilha editada
+        document.getElementById('baixar-planilha').addEventListener('click', function() {
+            var wb = XLSX.utils.book_new();
+            var ws = XLSX.utils.aoa_to_sheet(jsonData);
+            XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+            XLSX.writeFile(wb, 'planilha_editada.xlsx');
+        });
+
+        // Função para salvar a planilha no armazenamento local
+        document.getElementById('salvar-planilha').addEventListener('click', function() {
+            localStorage.setItem('planilha', JSON.stringify(jsonData));
+            alert('Planilha salva com sucesso!');
+        });
+
+        // Função para carregar a planilha salva
+        document.getElementById('carregar-planilha').addEventListener('click', function() {
+            var savedData = JSON.parse(localStorage.getItem('planilha'));
+            if (savedData) {
+                jsonData = savedData;
+                var table = document.getElementById('tabela-conteudo');
+                var tbody = table.querySelector('tbody');
+                tbody.innerHTML = '';
+
+                jsonData.forEach(function(row) {
+                    var tr = document.createElement('tr');
+                    row.forEach(function(cell) {
+                        var td = document.createElement('td');
+                        td.textContent = cell;
+                        td.contentEditable = true;
+                        tr.appendChild(td);
+                    });
+                    tbody.appendChild(tr);
+                });
+
+                var thead = table.querySelector('thead tr');
+                thead.innerHTML = '';
+                jsonData[0].forEach(function(header) {
+                    var th = document.createElement('th');
+                    th.textContent = header;
+                    thead.appendChild(th);
+                });
+
+                alert('Planilha carregada com sucesso!');
+            } else {
+                alert('Nenhuma planilha salva encontrada.');
+            }
+        });
+
+        // Função para listar as planilhas salvas
+        document.getElementById('listar-planilhas').addEventListener('click', function() {
+            planilhasSalvas = JSON.parse(localStorage.getItem('planilhasSalvas')) || [];
+            alert('Planilhas salvas: ' + planilhasSalvas.join(', '));
+        });
+
+        // Função para voltar para a página anterior
+        document.getElementById('voltar-btn').addEventListener('click', function() {
+            window.history.back();
+        });
+    </script>
+
+</body>
+</html>

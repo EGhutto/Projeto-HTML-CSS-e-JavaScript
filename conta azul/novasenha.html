@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trocar Senha</title>
+    <!-- Link do CDN do Bootstrap e FontAwesome para ícones -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="icon" href="EHM2.jpg" type="image/x-icon">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #1f3a5b; /* Azul industrial */
+            color: #eaeaea;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .logo {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            width: 50px;
+            height: auto;
+            z-index: 100;
+        }
+
+        .back-button {
+            background-color: #555555;
+            border: 1px solid #666666;
+            color: #d1d1d1;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: #666666;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);
+        }
+
+        .container {
+            background: #2e2e2e;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            max-width: 450px;
+            width: 100%;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9);
+        }
+
+        h2 {
+            color: #f1f1f1;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            font-size: 2rem;
+            letter-spacing: 1.5px;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: #d1d1d1;
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+
+        .form-label {
+            color: #b0b0b0;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .form-control {
+            background: #555555; /* Cor metálica escura */
+            border: 1px solid #777777; /* Borda metálica */
+            color: #eaeaea;
+            border-radius: 6px;
+            height: 45px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        .form-control:focus {
+            border-color: #ffcc00; /* Cor amarela para foco */
+            box-shadow: 0 0 10px rgba(255, 204, 0, 0.8);
+            background: #444444; /* Cor mais escura para foco */
+        }
+
+        .input-group-text {
+            cursor: pointer;
+        }
+
+        /* Botão Alterar Senha com Paleta Azul Industrial */
+        .btn-success {
+            background: linear-gradient(145deg, #1f3a5b, #4a6f88); /* Azul industrial metálico */
+            border: none;
+            font-size: 1.1rem;
+            font-weight: bold;
+            padding: 12px;
+            width: 100%;
+            margin-top: 20px;
+            letter-spacing: 1px;
+            border-radius: 8px;
+            color: #fff;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(26, 55, 95, 0.5); /* Sombra com tom mais escuro de azul */
+        }
+
+        .btn-success:hover {
+            background: linear-gradient(145deg, #4a6f88, #1f3a5b); /* Alteração no gradiente do hover */
+            box-shadow: 0 8px 25px rgba(26, 55, 95, 0.7); /* Sombra mais intensa no hover */
+            transform: translateY(-2px);
+        }
+
+        .progress {
+            height: 10px;
+            margin-top: 20px;
+            border-radius: 20px;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .progress-bar {
+            background: #ffcc00; /* Barra de progresso amarela */
+            border-radius: 20px;
+        }
+
+        .error {
+            color: #ff4444;
+            font-size: 1rem;
+            margin-top: 10px;
+            display: none;
+        }
+
+        .success {
+            color: #8bc34a;
+            font-size: 1rem;
+            margin-top: 10px;
+            display: none;
+        }
+
+        /* Animações */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Adicionando transição suave ao ícone do olho */
+        .bi-eye, .bi-eye-slash {
+            transition: color 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <!-- Logo no canto superior esquerdo -->
+    <img src="EHM2.jpg" alt="Logo" class="logo">
+
+    <!-- Botão de voltar -->
+    <button class="back-button" onclick="window.history.back()">
+        <i class="bi bi-arrow-left"></i> Voltar
+    </button>
+
+    <!-- Formulário de troca de senha -->
+    <div class="container">
+        <h2>Trocar Senha</h2>
+        <form action="trocar_senha.php" method="POST">
+            <div class="mb-3">
+                <label for="senha_atual" class="form-label">
+                    <i class="bi bi-lock"></i> Senha Atual
+                </label>
+                <div class="input-group">
+                    <input type="password" id="senha_atual" name="senha_atual" class="form-control" required placeholder="Digite sua senha atual">
+                    <span class="input-group-text" id="show-senha-atual" onclick="togglePasswordVisibility('senha_atual')">
+                        <i class="bi bi-eye"></i>
+                    </span>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="nova_senha" class="form-label">
+                    <i class="bi bi-key"></i> Nova Senha
+                </label>
+                <div class="input-group">
+                    <input type="password" id="nova_senha" name="nova_senha" class="form-control" required placeholder="Digite a nova senha">
+                    <span class="input-group-text" id="show-nova-senha" onclick="togglePasswordVisibility('nova_senha')">
+                        <i class="bi bi-eye"></i>
+                    </span>
+                </div>
+                <div class="progress">
+                    <div class="progress-bar" id="password-strength-indicator" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="confirmar_senha" class="form-label">
+                    <i class="bi bi-check-circle"></i> Confirmar Nova Senha
+                </label>
+                <div class="input-group">
+                    <input type="password" id="confirmar_senha" name="confirmar_senha" class="form-control" required placeholder="Confirme a nova senha">
+                    <span class="input-group-text" id="show-confirmar-senha" onclick="togglePasswordVisibility('confirmar_senha')">
+                        <i class="bi bi-eye"></i>
+                    </span>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-success">
+                <i class="bi bi-check-circle"></i> Alterar Senha
+            </button>
+            <div class="error" id="error-message"></div>
+            <div class="success" id="success-message">Senha alterada com sucesso!</div>
+        </form>
+    </div>
+
+    <!-- CDN do Bootstrap e FontAwesome -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+    <script>
+        // Função para alternar a visibilidade das senhas
+        function togglePasswordVisibility(id) {
+            const passwordField = document.getElementById(id);
+            const icon = document.getElementById(`show-${id}`).querySelector('i');
+
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+                icon.classList.remove("bi-eye");
+                icon.classList.add("bi-eye-slash");
+            } else {
+                passwordField.type = "password";
+                icon.classList.remove("bi-eye-slash");
+                icon.classList.add("bi-eye");
+            }
+        }
+    </script>
+</body>
+</html>

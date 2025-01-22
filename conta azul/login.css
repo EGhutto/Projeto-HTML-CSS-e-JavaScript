@@ -1,0 +1,177 @@
+/* Variáveis de Cor */
+:root {
+    --bg-color: #2b2b2b;
+    --container-bg: #3d3d3d;
+    --input-bg: #565656;
+    --input-border: #777777;
+    --btn-bg: #f39c12; /* Cor amarela/laranja de alerta */
+    --btn-bg-hover: #d35400;
+    --text-color: #ffffff;
+    --highlight-color: #f39c12;
+    --border-radius: 4px;
+}
+
+/* Reset de margin e padding */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilos principais */
+body {
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+/* Container do formulário */
+.container {
+    width: 100%;
+    max-width: 380px;
+    padding: 30px;
+    background-color: var(--container-bg);
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    border: 2px solid #444444;
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+/* Logo do formulário */
+.logo {
+    margin-bottom: 20px;
+    padding: 10px;
+    background: #444444;
+    border-bottom: 2px solid var(--highlight-color);
+}
+
+.logo-image {
+    width: 90px;
+    height: auto;
+}
+
+/* Títulos */
+h2 {
+    margin-bottom: 15px;
+    font-size: 20px;
+    color: var(--highlight-color);
+}
+
+/* Estilos de input */
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid var(--input-border);
+    border-radius: var(--border-radius);
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    font-size: 14px;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+    border-color: var(--highlight-color);
+    outline: none;
+}
+
+/* Botões */
+button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 15px;
+    background-color: var(--btn-bg);
+    color: var(--text-color);
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+button:hover {
+    background-color: var(--btn-bg-hover);
+    transform: translateY(-2px);
+}
+
+/* Links de alternância */
+.toggle-text {
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.toggle-link {
+    color: var(--highlight-color);
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.toggle-link:hover {
+    text-decoration: underline;
+}
+
+/* Estilos de Acessibilidade */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+/* Erros */
+.error {
+    color: #e74c3c;
+    font-size: 0.875rem;
+    margin-top: 5px;
+    display: none;
+}
+
+/* Estilos do grupo de input */
+.input-group {
+    position: relative;
+    margin: 10px 0;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px 40px;
+    border: 1px solid #2c3e50;
+    border-radius: 6px;
+    background-color: #2c3e50;
+    color: white;
+    font-size: 1rem;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #1abc9c;
+    box-shadow: 0 0 5px #1abc9c;
+}
+
+.input-group i {
+    position: absolute;
+    top: 50%;
+    left: 12px;
+    transform: translateY(-50%);
+    color: #bdc3c7;
+    font-size: 18px;
+}
+
+input::placeholder {
+    color: #bdc3c7;
+}

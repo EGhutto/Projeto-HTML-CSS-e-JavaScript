@@ -1,0 +1,226 @@
+/* Resetando margens e preenchimentos padrão */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box #34495e;
+}
+
+/* Fonte padrão */
+body {
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(to bottom right, #34495e, #34495e);
+    color: #34495e;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    line-height: 1.6;
+}
+
+/* Estilo para o header (barra de navegação) */
+header.navbar {
+    background: linear-gradient(45deg, #34495e, #37474f);
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    border-bottom: 2px solid #37474f;
+}
+
+/* Logo no header */
+header .logo {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+/* Botão de voltar no header */
+header .btn-back {
+    background: linear-gradient(45deg, #3498db, #2980b9); /* Gradiente de azul */
+    border: 2px solid #2980b9;
+    color: #fff;
+    padding: 12px 30px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.4s ease-in-out, transform 0.3s ease; /* Transições mais suaves */
+    box-shadow: 0 4px 15px rgba(41, 128, 185, 0.4); /* Sombra suave */
+}
+
+/* Hover no botão de voltar */
+header .btn-back:hover {
+    background: linear-gradient(45deg, #2980b9, #3498db); /* Inverte o gradiente */
+    color: #fff;
+    transform: translateY(-5px); /* Levanta o botão */
+    box-shadow: 0 6px 20px rgba(41, 128, 185, 0.6); /* Aumenta a sombra */
+}
+
+/* Foco no botão de voltar */
+header .btn-back:focus {
+    outline: none; /* Remove o contorno padrão */
+    box-shadow: 0 0 10px rgba(41, 128, 185, 0.8); /* Efeito de foco com sombra azul */
+}
+
+/* Container principal */
+main.container {
+    padding: 40px 30px;
+    max-width: 1200px;
+    margin: 30px auto;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+    border: 1px solid #34495e;
+}
+
+/* Título principal */
+.main-title {
+    font-size: 2.8rem;
+    margin-bottom: 20px;
+    font-weight: 600;
+    text-align: center;
+    color: #263238;
+    letter-spacing: 1px;
+}
+
+/* Seção para definir número de semanas */
+.weeks-section {
+    margin-bottom: 25px #34495e;
+    text-align: center;
+}
+
+/* Estilo do label na seção de semanas */
+.weeks-section label {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #263238;
+    display: block;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+/* Estilo do input na seção de semanas */
+.weeks-section input {
+    font-size: 1.4rem;
+    padding: 12px 20px;
+    width: 120px;
+    text-align: center;
+    border: 2px solid #37474f;
+    border-radius: 8px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Foco no input na seção de semanas */
+.weeks-section input:focus {
+    border-color: #ff7043;
+    box-shadow: 0 0 8px rgba(255, 112, 67, 0.5);
+}
+
+/* Estilo do label quando o input está focado */
+.weeks-section input:focus + label {
+    color: #ff7043;
+    transform: translateY(-5px);
+}
+
+/* Estilo para as seções das tabelas */
+.tables-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: space-between;
+}
+
+/* Estilo para cada tabela */
+.table-container {
+    background-color: #fff;
+    border-radius: 12px;
+    border: 1px solid #ddd;
+    padding: 30px;
+    flex-basis: 23%;
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+    margin-bottom: 30px;
+}
+
+/* Hover nas tabelas */
+.table-container:hover {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+    transform: translateY(-8px);
+}
+
+/* Cabeçalhos das tabelas */
+.table-container h2 {
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+    color: #263238;
+    text-align: center;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+/* Estilo para as tabelas */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+/* Estilo das células das tabelas */
+table th, table td {
+    border: 1px solid #ddd;
+    padding: 15px 20px;
+    text-align: center;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease;
+}
+
+/* Cabeçalhos das tabelas */
+table th {
+    background-color: #37474f;
+    color: #fff;
+    font-weight: bold;
+}
+
+/* Hover nas linhas da tabela */
+table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Estilo para os totais */
+.table-container div {
+    font-weight: 600;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 1.4rem;
+    color: #263238;
+}
+
+/* Responsividade para dispositivos menores */
+@media (max-width: 768px) {
+    .tables-section {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .table-container {
+        flex-basis: 100%;
+        margin-bottom: 20px;
+    }
+
+    .weeks-section input {
+        width: 100%;
+    }
+
+    header.navbar {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .main-title {
+        font-size: 2rem;
+    }
+}

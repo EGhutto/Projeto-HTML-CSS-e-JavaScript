@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EHM Sistema Integrado</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="EHM2.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Login Form -->
+        <section id="login-form" class="form-section">
+            <h2>Login EHM</h2>
+            <form id="loginForm">
+                <div class="input-group">
+                    <i class="fa fa-user"></i>
+                    <input type="text" id="login-username" name="username" placeholder="Usuário" required>
+                    <span class="error" id="login-username-error">Usuário inválido</span>
+                </div>
+
+                <div class="input-group">
+                    <i class="fa fa-lock"></i>
+                    <input type="password" id="login-password" name="password" placeholder="Senha" required>
+                    <span class="error" id="login-password-error">Senha inválida</span>
+                </div>
+
+                <button type="button" onclick="login()">Entrar</button>
+            </form>
+            <p class="toggle-text">
+                Esqueceu sua senha? <a href="novasenha.html" class="toggle-link">Recupere aqui</a>
+            </p>
+            <p class="toggle-text">
+                Não tem uma conta? <span onclick="toggleForms()" class="toggle-link">Cadastre-se</span>
+            </p>
+        </section>
+
+        <!-- Signup Form -->
+        <section id="signup-form" class="form-section" style="display: none;">
+            <h2>Cadastro EHM</h2>
+            <form id="signupForm">
+                <div class="input-group">
+                    <i class="fa fa-user"></i>
+                    <input type="text" id="signup-username" name="username" placeholder="Usuário" required>
+                    <span class="error" id="signup-username-error">Usuário inválido</span>
+                </div>
+
+                <div class="input-group">
+                    <i class="fa fa-lock"></i>
+                    <input type="password" id="signup-password" name="password" placeholder="Senha" required>
+                    <span class="error" id="signup-password-error">Senha inválida</span>
+                </div>
+
+                <div class="input-group">
+                    <i class="fa fa-lock"></i>
+                    <input type="password" id="signup-confirm-password" name="confirm-password" placeholder="Confirmar Senha" required>
+                    <span class="error" id="signup-confirm-password-error">As senhas não coincidem</span>
+                </div>
+
+                <button type="button" onclick="signup()">Cadastrar</button>
+            </form>
+            <p class="toggle-text">
+                Já tem uma conta? <span onclick="toggleForms()" class="toggle-link">Faça login</span>
+            </p>
+        </section>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script>
+        function toggleForms() {
+            const loginForm = document.getElementById('login-form');
+            const signupForm = document.getElementById('signup-form');
+            loginForm.style.display = loginForm.style.display === 'none' ? 'block' : 'none';
+            signupForm.style.display = signupForm.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function login() {
+            const username = document.getElementById('login-username').value;
+            const password = document.getElementById('login-password').value;
+
+            // Validação simples no lado do cliente
+            if (!username || !password) {
+                if (!username) {
+                    document.getElementById('login-username-error').style.display = 'block';
+                } else {
+                    document.getElementById('login-username-error').style.display = 'none';
+                }
+
+                if (!password) {
+                    document.getElementById('login-password-error').style.display = 'block';
+                } else {
+                    document.getElementById('login-password-error').style.display = 'none';
+                }
+                return;
+            }
+
+            // Simulando login bem-sucedido para teste
+            alert('Login bem-sucedido! Redirecionando...');
+            window.location.href = 'p1.html';
+        }
+
+        function signup() {
+            const username = document.getElementById('signup-username').value;
+            const password = document.getElementById('signup-password').value;
+            const confirmPassword = document.getElementById('signup-confirm-password').value;
+
+            // Validação simples no lado do cliente
+            if (!username || !password || !confirmPassword) {
+                if (!username) {
+                    document.getElementById('signup-username-error').style.display = 'block';
+                } else {
+                    document.getElementById('signup-username-error').style.display = 'none';
+                }
+
+                if (!password) {
+                    document.getElementById('signup-password-error').style.display = 'block';
+                } else {
+                    document.getElementById('signup-password-error').style.display = 'none';
+                }
+
+                if (!confirmPassword) {
+                    document.getElementById('signup-confirm-password-error').style.display = 'block';
+                } else {
+                    document.getElementById('signup-confirm-password-error').style.display = 'none';
+                }
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                document.getElementById('signup-confirm-password-error').style.display = 'block';
+                return;
+            } else {
+                document.getElementById('signup-confirm-password-error').style.display = 'none';
+            }
+
+            // Simulando cadastro bem-sucedido para teste
+            alert('Cadastro realizado com sucesso! Redirecionando...');
+            window.location.href = 'p1.html';
+        }
+    </script>
+</body>
+</html>

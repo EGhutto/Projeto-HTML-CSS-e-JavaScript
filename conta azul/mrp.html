@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema MRP - Administração da Produção</title>
+    <!-- Link para o arquivo CSS -->
+    <link rel="stylesheet" href="mrp.css">
+    <link rel="icon" href="EHM2.jpg" type="image/x-icon">
+    <style>
+        /* Estilos para o logo */
+        header {
+            position: relative; /* Garantir que o header seja o contexto de referência */
+            padding: 10px;
+        }
+        header img {
+            width: 50px; /* Ajuste o tamanho do logo */
+            height: auto;
+        }
+
+        /* Estilos para o botão de voltar */
+        .back-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            text-transform: uppercase;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s, transform 0.2s ease-in-out;
+        }
+        
+        .back-button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+        
+        .back-button:active {
+            background-color: #004085;
+            transform: scale(0.98);
+        }
+        
+        .back-button:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(38, 143, 255, 0.5);
+        }
+        
+    </style>
+</head>
+<body>
+
+    <!-- Cabeçalho com o logo e botão voltar -->
+    <header>
+        <img src="EHM.jpeg" alt="Logo do Sistema MRP"> <!-- Substitua "logo.jpg" pelo caminho do seu logo -->
+        <button class="back-button" onclick="window.history.back()">Voltar</button>
+    </header>
+
+    <!-- Conteúdo principal -->
+    <main class="container">
+        <h1 class="main-title">Administração da Produção e Operações</h1>
+
+        <!-- Seção para definir o número de semanas -->
+        <section class="weeks-section">
+            <label for="weeks" class="label-weeks">Número de Semanas:</label>
+            <input type="number" id="weeks" name="weeks" value="4" min="1" oninput="adjustWeeks()" aria-label="Número de semanas">
+        </section>
+
+        <!-- Tabelas de produção -->
+        <section class="tables-section">
+            <div class="table-container">
+                <h2 id="Mesa-title">Mesa</h2>
+                <table id="Mesa" aria-describedby="total_Mesa"></table>
+                <div id="total_Mesa"></div>
+            </div>
+
+            <div class="table-container">
+                <h2 id="Tampo-title">Tampo</h2>
+                <table id="Tampo" aria-describedby="total_Tampo"></table>
+                <div id="total_Tampo"></div>
+            </div>
+
+            <div class="table-container">
+                <h2 id="Tronco-title">Tronco</h2>
+                <table id="Tronco" aria-describedby="total_Tronco"></table>
+                <div id="total_Tronco"></div>
+            </div>
+
+            <div class="table-container">
+                <h2 id="Suportes-title">Suportes</h2>
+                <table id="Suportes" aria-describedby="total_Suportes"></table>
+                <div id="total_Suportes"></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Arquivo JavaScript -->
+    <script src="mrp.js"></script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Financeiro💵</title>
+    <link rel="stylesheet" href="conta.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="icon" href="EHM2.jpg" type="image/x-icon">
+    
+</head>
+<body>
+    <header>
+       <h1>EHM - Dashboard Financeiro</h1></center>
+        <img src="EHM.jpeg" alt="Logo" id="logo"> <!-- Logo no canto superior esquerdo -->
+    </header>
+    <div class="container">
+        <main>
+            <section id="balance-section" class="balance">
+                <h2>Saldo Atual</h2>
+                <p id="balance">R$ 0,00</p>
+            </section>
+            <section id="transactions-section" class="transactions">
+                <h2>Transações</h2>
+                <ul id="transaction-list"></ul>
+            </section>
+            <section id="add-transaction-section" class="add-transaction">
+                <h2>Adicionar Transação</h2>
+                <form id="transaction-form">
+                    <input type="text" id="description" placeholder="Descrição" required>
+                    <input type="number" id="amount" placeholder="Valor" required>
+                    <select id="category">
+                        <option value="Receita">Receita</option>
+                        <option value="Despesa">Despesa</option>
+                    </select>
+                    <button type="submit">Adicionar</button>
+                </form>
+            </section>
+            <section id="reports-section" class="reports">
+                <h2>Relatórios</h2>
+                <button id="generate-report">Gerar Relatório</button>
+                <div id="report-container"></div>
+            </section>
+        </main>
+    </div>
+    
+    <!-- Botão Voltar -->
+    <button id="back-button" onclick="goBack()">Voltar</button>
+    
+    <script src="conta.js"></script>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>

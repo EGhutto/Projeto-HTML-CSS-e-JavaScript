@@ -1,0 +1,200 @@
+/* Estilo para o logo no canto superior esquerdo */
+#logo {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 60px;
+    height: auto;
+}
+
+/* Estilo para o header */
+header {
+    position: relative;
+    padding: 25px;
+    background-color: #212f3c; /* Escuro, com um tom de aço */
+    color: #070707;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.8); /* Sombra mais forte para maior profundidade */
+    z-index: 10;
+    border-bottom: 5px solid #7f8c8d; /* Borda metálica */
+    transition: all 0.3s ease-in-out;
+}
+
+header:hover {
+    background-color: #34495e; /* Cor de fundo escura com leve variação no hover */
+}
+
+h1 {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    margin: 0;
+    font-size: 2.2rem;
+    text-align: center;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #3498db; /* Toque dourado industrial */
+    transition: all 0.3s ease;
+}
+
+/* Estilo do corpo da página */
+body {
+    background: url('https://www.textures.com/system/gallery/pictures/2389.jpg') no-repeat center center fixed; /* Fundo de concreto mais realista */
+    background-size: cover;
+    background-blend-mode: multiply; /* Mescla a textura com a cor de fundo */
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #ecf0f1; /* Texto claro para contraste */
+    background-color: #2c3e50; /* Fundo escuro, para um tom mais industrial */
+}
+
+/* Estilo para o botão "Voltar" */
+#back-button {
+    position: fixed; /* Fixo na tela, independentemente da rolagem */
+    top: 20px; /* Distância do topo */
+    right: 20px; /* Distância da direita */
+    background-color: #3498db; /* Tom metálico rubi */
+    color: white;
+    font-size: 1.3rem;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7); /* Sombra forte para maior profundidade */
+    z-index: 1000; /* Garantir que o botão fique acima de outros elementos */
+    transition: all 0.3s ease-in-out;
+}
+
+#back-button:hover {
+    background-color: #3498db;
+    transform: translateY(-5px); /* Eleva o botão ao passar o mouse */
+}
+
+#back-button:active {
+    transform: scale(0.95); /* Efeito de clique */
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
+}
+
+/* Estilo para os títulos das seções */
+h2 {
+    color: #3498db;
+    font-size: 1.9rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Estilo para o formulário de transação */
+#transaction-form input,
+#transaction-form select,
+#transaction-form button {
+    width: 100%;
+    padding: 15px;
+    margin: 12px 0;
+    border-radius: 8px;
+    border: 2px solid #7f8c8d;
+    font-size: 1.2rem;
+    background-color: #34495e; /* Fundo mais escuro para entradas e botões */
+    color: #ecf0f1;
+    transition: all 0.3s ease-in-out;
+}
+
+#transaction-form input:focus,
+#transaction-form select:focus {
+    border-color: #3498db; /* Efeito de foco dourado */
+}
+
+#transaction-form button {
+    background-color: #2980b9;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s ease-in-out;
+}
+
+#transaction-form button:hover {
+    background-color: #3498db;
+}
+
+/* Estilo para as seções das transações e saldo */
+.balance,
+.transactions,
+.add-transaction,
+.reports {
+    background-color: rgba(44, 62, 80, 0.9); /* Fundo mais escuro e opaco */
+    padding: 30px;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6); /* Sombra mais intensa */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.balance:hover,
+.transactions:hover,
+.add-transaction:hover,
+.reports:hover {
+    transform: translateY(-12px); /* Elevação mais pronunciada ao passar o mouse */
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.7); /* Sombra ainda mais forte */
+}
+
+/* Estilo para a lista de transações */
+#transaction-list li {
+    padding: 15px 25px;
+    margin: 12px 0;
+    background-color: #2c3e50;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#transaction-list li:hover {
+    background-color: #34495e;
+    transform: translateX(12px);
+}
+
+/* Estilo para os relatórios */
+.reports button {
+    background-color:#3498db;
+    color: white;
+    font-weight: bold;
+    padding: 15px 25px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.reports button:hover {
+    background-color: #2ecc71;
+}
+
+/* Fontes para aspecto industrial */
+h1, h2, p, ul, li {
+    font-family: 'Oswald', sans-serif;
+    font-weight: bold;
+}
+
+/* Estilo geral para os textos */
+p,
+ul,
+li {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: #ecf0f1; /* Texto claro para contraste */
+}
+
+/* Detalhes de borda para efeito industrial */
+input, select, button {
+    border: 2px solid #7f8c8d;
+}
+
+/* Ajuste no layout para torná-lo mais limpo */
+.container {
+    width: 80%;
+    margin: auto;
+    padding: 30px;
+    background-color: rgba(52, 152, 219, 0.1); /* Fundo leve para destacar conteúdo */
+    border-radius: 10px;
+}

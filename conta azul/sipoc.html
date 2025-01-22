@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIPOC Interativo</title>
+    <link rel="stylesheet" href="sipoc.css"> 
+    <script src="sipoc.js" defer></script>
+    <link rel="icon" href="EHM2.jpg" type="image/x-icon">
+</head>
+<body>
+    <div class="container">
+        <!-- Logo no canto superior esquerdo -->
+        <div class="logo-container">
+            <img src="EHM2.jpg" alt="Logo" class="logo">
+        </div>
+
+        <center><h1 class="title">Tabela SIPOC Interativa</h1></center>
+
+        <!-- Formulário para adicionar e editar linhas -->
+        <div class="form-section">
+            <center><h2 id="formTitle"></h2></center>
+            <form id="sipocForm">
+                <div class="input-group">
+                    <input type="text" id="fornecedor" placeholder="Fornecedor" required>
+                    <input type="text" id="entrada" placeholder="Entrada" required>
+                    <input type="text" id="processo" placeholder="Processo" required>
+                    <input type="text" id="saida" placeholder="Saída" required>
+                    <input type="text" id="cliente" placeholder="Cliente" required>
+                </div>
+                <button type="submit" id="submitBtn" class="btn">Adicionar Processo</button>
+            </form>
+        </div>
+        
+        <!-- Botão Voltar no canto superior direito -->
+        <button class="voltar" onclick="window.history.back();">VOLTAR</button>
+
+        <!-- Tabela SIPOC -->
+        <table id="sipocTable" class="sipoc-table">
+            <thead>
+                <tr>
+                    <th>Fornecedor</th>
+                    <th>Entrada</th>
+                    <th>Processo</th>
+                    <th>Saída</th>
+                    <th>Cliente</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- As linhas serão adicionadas aqui -->
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

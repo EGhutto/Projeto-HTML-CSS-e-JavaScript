@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>EHM - Soluções Industriais</title>
+
+    <!-- Link do CSS do Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Link do Font Awesome para Ícones -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="icon" href="EHM2.jpg" type="image/x-icon">
+
+    <!-- Estilos personalizados -->
+    <style>
+        /* Reset de estilos */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+    
+        /* Estilo global para o body */
+        body {
+            font-family: 'Oswald', sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            background-color: #1e2a47; /* Azul escuro */
+            animation: fadeInBody 1s ease-in-out;
+        }
+    
+        /* Navbar personalizada */
+        .navbar {
+            background-color: #2c3e50; /* Azul profundo */
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            opacity: 0;
+            animation: fadeIn 1s ease-in-out forwards;
+        }
+    
+        .navbar-brand img {
+            width: 40px;
+            height: auto;
+            margin-right: 10px;
+            border-radius: 50%;
+        }
+    
+        .navbar-brand {
+            font-weight: bold;
+            font-size: 1.8rem;
+            color: #3498db; /* Azul claro */
+            display: flex;
+            align-items: center;
+        }
+    
+        .navbar-brand:hover {
+            color: #2980b9; /* Azul forte */
+        }
+    
+        .navbar-nav {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+    
+        .nav-link {
+            color: #ecf0f1; /* Branco claro */
+            font-weight: 600;
+            transition: color 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
+            padding: 10px 15px;
+            opacity: 0;
+            animation: fadeIn 1s ease-in-out forwards;
+        }
+    
+        .nav-link:hover {
+            color: #2980b9; /* Azul forte */
+            transform: scale(1.05);
+            opacity: 1;
+        }
+    
+        /* Conteúdo principal */
+        .content {
+            margin-top: 120px;
+            text-align: center;
+            color: #ecf0f1; /* Branco claro */
+            flex: 1;
+            padding: 0 20px;
+            background: url('metal-texture.jpg') no-repeat center center fixed;
+            background-size: cover;
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
+            animation: fadeIn 1s ease-in-out forwards;
+        }
+    
+        .content h1 {
+            font-size: 3.5rem;
+            font-weight: bold;
+            color: #3498db; /* Azul claro */
+            text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.7);
+            letter-spacing: 2px;
+        }
+    
+        .content p {
+            font-size: 1.5rem;
+            color: #bdc3c7; /* Cinza claro */
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+        }
+    
+        /* Hora e data */
+        #clock {
+            font-size: 1.1rem;
+            color: #ffffff;
+            margin: 20px 0;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+        }
+    
+        #clock span {
+            font-weight: bold;
+            color: #3498db; /* Azul claro */
+        }
+    
+        /* Rodapé */
+        footer {
+            background-color: #2c3e50; /* Azul profundo */
+            color: #ffffff;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: auto;
+            border-top: 2px solid #3498db; /* Azul claro */
+            animation: fadeIn 1s ease-in-out forwards;
+        }
+    
+        footer .social-icons a {
+            color: #ffffff;
+            margin: 0 15px;
+            font-size: 2rem;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+    
+        footer .social-icons a:hover {
+            color: #3498db; /* Azul claro */
+            transform: scale(1.2);
+        }
+    
+        footer p {
+            margin-top: 15px;
+            font-size: 1rem;
+        }
+    
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .content h1 {
+                font-size: 2.5rem;
+            }
+    
+            .content p {
+                font-size: 1.2rem;
+            }
+    
+            .navbar-brand {
+                font-size: 1.5rem;
+            }
+    
+            .nav-link {
+                font-size: 1rem;
+            }
+        }
+    
+        /* Estilo para a Div "Sair" */
+        .logout-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #3498db; /* Azul claro */
+            color: #212121;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+    
+        .logout-container:hover {
+            background-color: #2980b9; /* Azul forte */
+            transform: scale(1.05);
+        }
+    
+        .logout-container i {
+            margin-right: 10px;
+        }
+    
+        /* Estilo para Botões com efeito de metal */
+        .btn-industrial {
+            background-color: #34495e; /* Azul petróleo */
+            color: #ecf0f1; /* Branco claro */
+            border: 2px solid #3498db; /* Azul claro */
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+    
+        .btn-industrial:hover {
+            background-color: #3498db; /* Azul claro */
+            color: #34495e; /* Azul petróleo */
+            transform: scale(1.05);
+        }
+    
+        /* Efeito para os ícones de navegação */
+        .nav-link i {
+            margin-right: 8px;
+            font-size: 1.3rem;
+            transition: transform 0.3s ease;
+        }
+    
+        .nav-link:hover i {
+            transform: rotate(20deg);
+        }
+    
+        /* Textura adicional em caixas e botões */
+        .card, .btn {
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid #333;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease;
+        }
+    
+        .card:hover, .btn:hover {
+            transform: scale(1.03);
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.7);
+        }
+
+        /* Animações */
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes fadeInBody {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+    </style>
+    
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="EHM2.jpg" alt="Logo EHM">EHM
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="mrp3.html"><i class="fas fa-calculator"></i> CALCULO</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="conta.html"><i class="fas fa-dollar-sign"></i> FINANCEIRO</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="mrp.html"><i class="fas fa-laptop"></i> MRP </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="planilha.html"><i class="fas fa-clipboard"></i> PLANILHA </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-cogs"></i> 
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="sipoc.html"><i class="fas fa-wrench"></i> SIPOC</a></li>
+                            <li><a class="dropdown-item" href="historia.html"><i class="fas fa-book"></i> HISTORIA</a></li>
+                            <li><a class="dropdown-item" href="novasenha.html"><i class="fas fa-key"></i> TROCAR SENHA</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Conteúdo principal -->
+    <div class="content container">
+        <h1>Bem-vindo ao EHM</h1>
+        <p>Solução em Gestão Industrial.</p>
+
+        <!-- Hora e Data -->
+        <div id="clock">
+            <span id="date"></span> | <span id="time"></span>
+        </div>
+    </div>
+
+    <!-- Div Sair -->
+    <div class="logout-container" onclick="logout()">
+        <i class="fas fa-sign-out-alt"></i> Sair
+    </div>
+
+    <!-- Rodapé -->
+    <footer>
+        <div class="social-icons">
+            <a href="mailto:contato@empresax.com" target="_blank" title="E-mail"><i class="fas fa-envelope"></i></a>
+            <a href="https://www.instagram.com/ghutto__/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://wa.me/5515996359589" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+        <p>© 2024 EHM. Todos os direitos reservados. Feito com 💼 por <a href="#">EHM</a>.</p>
+    </footer>
+
+    <!-- JavaScript do Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Script para Hora, Data e Mês -->
+    <script>
+        function updateClock() {
+            const now = new Date();
+
+            const day = now.getDate();
+            const month = now.getMonth() + 1;
+            const year = now.getFullYear();
+
+            let hours = now.getHours();
+            let minutes = now.getMinutes();
+            let seconds = now.getSeconds();
+
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            seconds = seconds < 10 ? '0' + seconds : seconds;
+
+            document.getElementById('date').textContent = `${day}/${month}/${year}`;
+            document.getElementById('time').textContent = `${hours}:${minutes}:${seconds}`;
+        }
+
+        setInterval(updateClock, 1000);
+
+        // Função de logout
+        function logout() {
+            window.location.href = 'login.html'; // Redireciona para a página de login
+        }
+    </script>
+</body>
+</html>
